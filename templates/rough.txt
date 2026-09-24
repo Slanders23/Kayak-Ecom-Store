@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block main_content %}
+<h1>Your Cart</h1>
+<section class="cart1">
+  <section class="cart">
+      {% for items in cart_items %}
+      <div class="cart">
+        <p
+
+          <a href="{{ url_for('product', productId=productId) }}"
+            >{{ items[productId] }}</a> {{items[color]}} <button><a href="{{url_for('dec', productId =productId)}}">-</a></button>{{ cart[productId] }}<button><a href="{{url_for('inc', productId =productId)}}">+</a></button>
+            {% if session["currency"] == 1 %} €{% elif session["currency"] == 1.2 %}
+            ${% else %} £{%endif%}{{(prices[productId]*cart[productId]*session["currency"])|round(2)}}
+          
+        </p>
+      </div>
+      {% endfor %}
+
+    
+  </section>
+  <section>
+   
+    <p>sub Total: 213</p>
+   <button> <a href="{{url_for('checkout')}}">Check out</a></button>
+  </form>  
+  </section>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block main_content %} <br />
+
+<div class="home">
+  <div></div>
+  <div class="shop">
+    {% if homeProducts %} {% for p in homeProducts %}
+
+    <div class="item">
+      <a href="{{url_for('product',productId=p['id'] )}}">
+        <img
+          src="{{url_for('static', filename='images/' ~ p['image'])}}"
+          alt=""
+        />
+        <h2>{{p["product"]}}</h2>
+        <p>
+          {% if session["currency"] == 1 %} €{% elif session["currency"] == 1.2
+          %} ${% else %} £{%endif%}{{(p["price"]*session["currency"])|round(2)}}
+        </p>
+      </a>
+      {% if g.user == "admin" %}
+      <button>
+        <a href="{{url_for('update',productId=p['id'] )}}">Update</a>
+      </button>
+      <button>
+        <a href="{{url_for('delete',productId=p['id'] )}}">Remove</a>
+      </button>
+      {%endif%}
+    </div>
+    {% endfor %} {%endif%}
+  </div>
+</div>
+{% endblock %}

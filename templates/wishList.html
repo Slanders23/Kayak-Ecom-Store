@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block main_content %}
+<form action="{{url_for('wishList')}}" novalidate method="post">
+    {{form.hidden_tag()}}
+    {{form.search()}}
+    {{form.submit()}}
+</form>
+<button {% if g.privacy == "Public" %} class="active"{%endif%}><a href="{{url_for('wishListPrivacy', privacy='Public')}}">Public</a></button>
+<button {% if g.privacy == "Private" %} class="active"{%endif%}> <a href="{{url_for('wishListPrivacy', privacy='Private')}}">Private</a></button>
+
+{%if users%}
+    {%for user in users%}
+    <div class="cart"> 
+        <a href="{{url_for('wishListUser', user_id = user['user_id'] )}}"><h3>{{user["user_id"]}}'s WishList</h3></a>
+        </div>
+        {%endfor%}
+  
+{%else%}
+<section class="cart1">
+  
+  <section class="cart">
+    {%if user == g.user%}
+    <h2>"Your" WishList</h2>
+    {%else%}
+    <h2>"{{user}}'s" WishList</h2>
+    {%endif%}
+      {% for row in wishList %}
+      <div class="cart">
+        {{row["product"]}}
+       {{row["color"]}}
+       {{row["size"]}}
+      {% if session["currency"] == 1 %} €{% elif session["currency"] == 1.2%} ${% else %} £{%endif%}{{(row["price"]*session["currency"])|round(2)}}
+
+       {%if row["user_id"] != g.user%}
+       <button><a href="{{url_for('buywish', user_id = row['user_id'], product_id =row['product_id'], color = row['color'], size=row['size'] )}}">
+        Gift User</a></button>
+        {%else%}
+        <Button> <a href="{{url_for('deleteWish', product_id =row['product_id'], color = row['color'], size=row['size'] )}}">Remove From WishList</a></Button>
+       {%endif%}
+      </div>
+        {%endfor%}
+
+  </section>
+  <section>
+    {%endif%}
+  </form>  
+  </section>
+</section>
+{% endblock %}

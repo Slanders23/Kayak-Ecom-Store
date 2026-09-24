@@ -1,0 +1,134 @@
+{% extends "base.html" %} {% block main_content %}
+
+<div class="product">
+  <div>
+    <img
+      src="{{url_for('static', filename='images/' ~ image)}}"
+      alt=""
+    />
+  </div>
+  <div>
+    <h2>{{product["product"]}}</h2>
+    <p>
+      <a href="{{url_for('brand',brandType=product['brand'])}}"
+        >{{product["brand"]}}</a
+      >
+    </p>
+    <p>Rating: {{ratingAdv |round(2)}}</p>
+    <p>
+      {% if session["currency"] == 1 %} €{% elif session["currency"] == 1.2 %}
+      ${% else %} £{%endif%}{{(product["price"]*session["currency"])|round(2)}}
+    </p>
+    <p>{{product["description"]}}</p>
+
+    <p>
+      {%for color in colors%} 
+       {% if active.lower() == color['color'].lower()%}<button class="active"> {%else%} <button> {%endif%}
+        <a
+          href="{{url_for('productColor',productId=product['id'],color =color['color'] )}}"
+          >{{ color['color'] }}{%if g.user == "admin"%} <a href="{{url_for('deleteColor',productId=product['id'],color =color['color'] )}}"><div class="remove">X</div></a>{%endif%}</a
+        >
+      </button>
+      {%endfor%}
+      {%if g.user == "admin" %}
+      <a href="{{url_for('addColor',productId=product['id'])}}"><button>ADD NEW </button></a>
+      {%endif%}
+    </p>
+    {%for size in sizes%} {%if active.lower() == size['color'].lower() %}
+    {%if active1 == size['size']%}
+    <button class="active">
+      {%else%}
+      <button>
+        {%endif%}
+      <a
+      href="{{url_for('productSize',productId=product['id'],color =active, size =size['size'])}}">{{size['size']}}{%if g.user == "admin"%}<a href="{{url_for('deleteSize',productId=product['id'],color =active, size = size['size'] )}}"><div class="remove">X</div></a>{%endif%}</a></button>
+    {%endif%}
+    {%endfor%}
+  </div>
+  <div>
+    {% if session["currency"] == 1 %} €{% elif session["currency"] == 1.2 %} ${%
+    else %} £{%endif%}{{(product["price"]*session["currency"])|round(2)}}
+    <p>Estimated delivery time: 7 days 
+    </p>
+    <p>{{g.address["address1"]}}</p>
+    <p>{{g.address["address2"]}}</p>
+    <p>{{g.address["address3"]}}</p>
+    <p>{{g.address["postCode"]}}</p>
+    <p>{% if stock %}{%if stock == 0 %} Out of Stock! {%elif stock < 3 %} Only {{stock}} left!{%else%} In Stock! {%endif%}{%endif%}</p>
+    <form
+      action="{{url_for('add_to_cart',productId=product['id'], color= active, size= active1)}}"
+      method="post"
+      novalidate
+    >
+      {{ form.hidden_tag() }} {{form.quantity()}}
+      <br /> {%if active1 and active%}
+      {{form.submit()}}
+      
+    </form>
+    <a href="{{url_for('addWishList',productId=product['id'], color= active, size= active1)}}"><button class="form">Add To Wish List</button></a>
+      {%else%}
+      <div class="button">Add to Basket  </div>
+    </form>
+      {%endif%}
+  </div>
+</div>
+<h3>Reviews</h3>
+<div class="leaveReview">
+  <h3>Leave Review</h3>
+<form
+  action="{{url_for('reviews',productId=product['id'])}}"
+  method="post"
+  enctype="multipart/form-data"
+  novalidate
+>
+  
+  {{rForm.review.label}}{{rForm.review()}}{{rForm.rating.label}}{{rForm.rating()}}
+  <br />
+  {{rForm.image}}
+  <br />
+  {{rForm.submit()}}
+</form>
+</div>
+<div class="reviews">
+  {%for r in reviews%}
+  <div class="review">
+    <p>{{r["user_id"]}} {{r["rating"]}}</p>
+    <p>{{r["review"]}}</p>
+    {%if r["image"] %}<img
+      src="{{url_for('static', filename='images/' ~ r['image'])}}"
+      alt=""
+    />{%endif%}
+    <button>
+      <a
+        href="{{url_for('reviewsReply',productId=product['id'],reviewId=r['id'] )}}"
+        >Reply</a
+      >
+    </button>
+    {% if g.user == "admin" %}
+    <button>
+      <a
+        href="{{url_for('deleteReview',productId=product['id'],reviewId=r['id'] )}}"
+        >Remove</a
+      >
+    </button>
+    {%endif%}
+    <h3>Replys</h3>
+    {%for replys in reply%} {%if r["id"] == replys["reviewId"]%}
+    <div class="reply">
+      <p>{{replys["rUser_id"]}}</p>
+      <p>{{replys["rReview"]}}</p>
+      {% if g.user == "admin" %}
+      <button>
+        <a
+          href="{{url_for('deleteReply',productId=product['id'],reviewId=replys['id'] )}}"
+          >Remove</a
+        >
+      </button>
+      {%endif%}
+    </div>
+    {%endif%} {%endfor%}
+  </div>
+
+  {%endfor%}
+</div>
+{% endblock %}

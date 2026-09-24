@@ -1,0 +1,26 @@
+* {
+  color: black;
+}
+body {
+  background-color: #bde0fa;
+}
+nav ul ul {
+  background-color: #0a73bf;
+}
+header nav ul ul {
+  background-color: #0a73bf;
+}
+
+header > nav {
+  background-color: #0a73bf;
+}
+nav {
+  background-color: #0a73bf;
+}
+.item {
+  background-color: #e1f0fd;
+}
+
+img {
+  mix-blend-mode: multiply;
+}

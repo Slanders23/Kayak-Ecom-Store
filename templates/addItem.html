@@ -1,0 +1,41 @@
+{% extends "account.html" %} {% block sec_content %}
+<h3>ADD Item</h3>
+<form action="" method="POST" enctype="multipart/form-data" novalidate>
+  {{form.hidden_tag() }}<!-- protects sea surf atacks -->
+  {{form.product(placeholder="Product Name")}}{% for error in
+  form.product.errors %} {{error}} {% endfor %}
+  <br />
+
+  {{form.description(placeholder="Description")}} {% for error in
+  form.description.errors %} {{error}} {% endfor %}
+  <br />
+
+  {{form.price(placeholder="Price")}} {% for error in form.price.errors %}
+  {{error}} {% endfor %}
+  <br />
+
+  {{form.stock(placeholder="stock")}} {% for error in form.stock.errors %}
+  {{error}} {% endfor %}
+  <br />
+
+  {{form.brand(placeholder="Brand")}} {% for error in form.stock.errors %}
+  {{error}} {% endfor %}
+  <br />
+
+  {{form.color(placeholder="Color")}} {% for error in form.stock.errors %}
+  {{error}} {% endfor %} <br />
+  {{form.size(placeholder="Size")}} {% for error in form.size.errors %}
+  {{error}} {% endfor %}
+  <br />
+
+  {{form.category(placeholder="Category")}}{% for error in form.category.errors
+  %} {{error}} {% endfor %}
+
+  <br />
+
+  {{form.image()}} {% for error in form.image.errors %} {{error}} {% endfor %}
+  <br />
+  {{form.submit()}}
+</form>
+
+{% endblock %}

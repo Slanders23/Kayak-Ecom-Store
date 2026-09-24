@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block main_content %}
+
+<nav>
+  <ul id="">
+    <li><a href="{{url_for('orders')}}">Orders</a></li>
+    <li><a href="{{url_for('changepassword')}}">Account Settings</a></li>
+
+    {% if g.user == "admin" %}
+    <li><a href="{{url_for('add')}}">Add Items</a></li>
+    {%endif%}
+    <li><a href="{{url_for('logout')}}">logout</a></li>
+  </ul>
+</nav>
+
+{% block sec_content %} {% endblock %} {% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block main_content %}
+<h1>Your Cart</h1>
+<section class="cart1">
+  
+  <section class="cart">
+      {% for dict in items %}
+      <div class="cart">
+       {{dict["productName"]}}
+       {{dict["color"]}}
+       {{dict["size"]}}
+       <button><a href="{{url_for('dec', productId =dict['productId'], color = dict['color'], size= dict['size'])}}">-</a></button>  {{dict["quantity"]}}
+      <button><a href="{{url_for('inc', productId =dict['productId'], color = dict['color'], size= dict['size'])}}">+</a></button> 
+       {% if session["currency"] == 1 %} €{% elif session["currency"] == 1.2 %}
+            ${% else %} £{%endif%}{{(dict["price"]*dict["quantity"]*session["currency"])|round(2)}}
+      
+      </div>
+        {%endfor%}
+      
+
+    
+  </section>
+  <section>
+   
+    <p>sub Total: 213</p>
+   <button> <a href="{{url_for('checkout')}}">Check out</a></button>
+  </form>  
+  </section>
+</section>
+{% endblock %}

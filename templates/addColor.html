@@ -1,0 +1,26 @@
+{% extends "account.html" %} {% block sec_content %}
+
+<form action="" method="POST" enctype="multipart/form-data" novalidate>
+  {{form.hidden_tag() }}<!-- protects sea surf atacks -->
+    <div class="input-group">
+      {{form.stock()}} <label class="user-label">{{form.stock.label}}</label>{%
+      for error in form.stock.errors %} {{error}} {% endfor %}
+    </div>
+    <br />
+    <div class="input-group">
+      {{form.color()}} <label class="user-label">{{form.color.label}}</label>
+    </div>
+  </div>
+  <br />
+  <div class="input-group">
+    {{form.size()}}<label class="user-label">{{form.size.label}} </label> {% for
+    error in form.size.errors %} {{error}} {% endfor %}
+  </div>
+  <div class="input-group">
+    {{form.image()}}<label class="user-label">{{form.image.label}} </label> 
+  
+  </div>
+  <div class="input-group">{{form.submit()}}</div>
+</form>
+
+{% endblock %}

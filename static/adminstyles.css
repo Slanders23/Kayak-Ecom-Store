@@ -1,0 +1,34 @@
+.shop .item:hover {
+  transition: 200ms;
+  width: 300px;
+  height: 360px;
+}
+.shop .item button {
+  display: none;
+  padding: 1em;
+  margin: 10px;
+  transition: 1s;
+}
+.shop .item:hover button {
+  display: inline;
+}
+button {
+  border: 3px;
+  border-radius: 5px;
+}
+
+form {
+  margin: 100px;
+}
+
+.remove {
+  padding: 0px;
+  margin: 0px;
+  background-color: #2196f3;
+  width: 1.2em;
+  border-radius: 0.5em;
+}
+
+a {
+  display: inline-block;
+}

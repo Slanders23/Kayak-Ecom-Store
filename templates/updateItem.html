@@ -1,0 +1,13 @@
+{% extends "account.html" %} {% block sec_content %}
+
+<form action="" method="POST" enctype="multipart/form-data" novalidate>
+  {{form.hidden_tag() }}<!-- protects sea surf atacks -->
+  {{form.product.label}} {{form.product()}} <br />
+  {{form.brand.label}} {{form.brand()}} <br />
+  {{form.price.label}} {{form.price()}} <br />
+  {{form.description.label}} {{form.description()}} <br />
+  {{form.category.label}} {{form.category()}} <br />{{form.image.label}}
+  {{form.image()}} <br />
+  {{form.submit()}}
+</form>
+{% endblock %}

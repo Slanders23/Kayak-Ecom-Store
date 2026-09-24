@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block main_content %} {%if g.user == "admin" %}
+<h1>ORDERS</h1>
+<section class="cart">
+  {% for o in orders %}
+  <div class="cart">
+    <p>
+      Order ID:{{o["id"]}} User:{{o["user_id"]}}
+      <b>{{o["product"]}} {{o["size"]}} {{o["color"]}} {{o["quantity"]}}</b>
+    </p>
+    {{o["Name"]}} {{o["address"]}}
+    {%if o["status"] == "Order Placed"%}
+    <div class="status"><a href="{{url_for('orderStatus', id=o['id'], status='Processing')}}"><button> Order Placed</button></a></div>
+    {%elif o["status"] == "Processing"%}
+    <div class="status"><a href="{{url_for('orderStatus', id=o['id'], status='Out for Delivery')}}"><button> Processing</button></a></div>
+    {%elif o["status"] == "Out for Delivery"%}
+    <div class="status"><button> Out for Delivery</button></div>
+    {%endif%}
+
+  </div>
+  {% endfor %}
+</section>
+{%else%}
+<h1>Your Orders</h1>
+<section class="cart">
+  {% for y in usersOrders %}
+  <div class="cart">
+    <p>
+     {%if y["price"] == "Gift" %}
+     <h2>Gift</h2>
+     {%endif%}
+      <h3>{{y["product"]}}</h3>
+        <b>Size: </b>{{y["size"]}} <b>Color: </b> {{y["color"]}}
+        <b>Quantity: </b>{{y["quantity"]}} 
+        {% if y["price"] != "Gift"%} <b>Price: </b>{{y["price"]}}{%endif%}
+        <b>Time Ordered: </b> {{y["orderDate"]}}
+        <div class="orderStatus">{{y["status"]}} {%if y["status"] == "Out for Delivery"%} <a href="{{url_for('orderStatus', id=y['id'], status='Delivered')}}"><button>Delivered</button></a>{%elif y["status"] == "Order Placed" %}<a href="{{url_for('orderStatus', id=y['id'], status='Cancelled')}}"><button>Cancel Order</button></a>{%endif%}</div>
+      
+    </p>
+  </div>
+  {%endfor%} {%endif%} {% endblock %}
+</section>

@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block main_content %}
+
+<div class="login">
+  <h2>Log in</h2>
+  <form action="" method="post" novalidate>
+    {{ form.hidden_tag() }} {{ form.user_name(placeholder="User") }} {% for
+    error in form.user_name.errors %} {{ error }} {% endfor %}
+
+    <br />
+
+    {{ form.password(placeholder="Password") }} {% for error in
+    form.password.errors %} {{ error }} {% endfor %}
+
+    <br />
+
+    {{ form.submit() }}
+  </form>
+  <a href="{{url_for('register')}}">or, Register</a>
+</div>
+
+{% endblock %}

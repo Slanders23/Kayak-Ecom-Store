@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block main_content %}
+  <div class="review">
+    <p>{{reviews["user_id"]}} {{reviews["rating"]}}</p>
+    <p>{{reviews["review"]}}</p>
+    {%if reviews["image"] %}<img
+      src="{{url_for('static', filename='images/' ~ reviews['image'])}}"
+      alt=""
+    />{%endif%}
+  </div>
+  <form method="POST" novalidate>
+    {{ rForm.hidden_tag() }}
+  {{rForm.review.label}}{{rForm.review()}}
+  {{rForm.submit()}}
+</form>
+</div>
+{% endblock %}

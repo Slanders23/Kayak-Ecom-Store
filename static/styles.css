@@ -1,0 +1,285 @@
+* {
+  color: rgb(255, 255, 255);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: oswald, sans-serif;
+  text-align: center;
+  /* outline: red dotted 1px; */
+}
+
+body {
+  align-items: center;
+  background-color: rgb(47, 45, 45);
+}
+a {
+  text-decoration: none;
+}
+/* Header */
+header nav ul ul {
+  list-style-type: none;
+  background: rgb(47, 45, 45);
+}
+nav ul ul {
+  list-style-type: none;
+  background: rgb(47, 45, 45);
+}
+nav ul li {
+  display: inline-block;
+  position: relative;
+}
+header nav ul li a {
+  display: block;
+  padding: 20px 25px;
+  text-align: center;
+}
+nav ul li a {
+  display: block;
+  padding: 6px 25px;
+  text-align: center;
+}
+
+ul li ul.dropdown li {
+  display: block;
+}
+ul li ul.dropdown {
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+  display: none;
+}
+ul li a:hover {
+  color: rgb(142, 255, 208);
+}
+ul li:hover ul.dropdown {
+  display: block;
+}
+header > nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 3vw;
+  height: 60px;
+  background: rgb(38, 37, 37);
+}
+
+nav ul {
+  display: flex;
+}
+
+/* nav */
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-inline: 3vw;
+  height: 30px;
+  background: rgb(38, 37, 37);
+}
+nav a {
+  padding: 6px;
+}
+
+/* sign in */
+.login h2 {
+  font-size: 3em;
+  color: #3c3c3c;
+  margin-top: 5%;
+  margin-left: 5%;
+  text-align: left;
+}
+.login {
+  margin-left: 25vw;
+  margin-top: 10vh;
+  width: 50vw;
+  height: 50vh;
+  background-color: #b2dfff;
+  border: black 3px solid;
+  border-radius: 15px;
+}
+.login form {
+  width: 50%;
+  margin-left: 25%;
+}
+.login input {
+  padding: 1em;
+  text-align: left;
+  font-size: 1em;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 1em;
+  height: 4em;
+}
+#submit {
+  text-align: center;
+  border-radius: 2em;
+  background-color: #65bbf5;
+}
+/* register */
+.register h2 {
+  font-size: 3em;
+  color: #3c3c3c;
+  margin-top: 5%;
+  margin-left: 5%;
+  text-align: left;
+}
+.register {
+  margin-left: 25vw;
+  margin-top: 10vh;
+  width: 50vw;
+  height: 70vh;
+  background-color: #b2dfff;
+  border: black 3px solid;
+  border-radius: 15px;
+}
+.register input {
+  padding: 1em;
+  text-align: left;
+  font-size: 1em;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 1em;
+  height: 4em;
+}
+.register form {
+  width: 50%;
+  margin-left: 25%;
+}
+
+/* shop */
+#sort {
+  color: black;
+}
+.home {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.item {
+  width: 300px;
+  height: 300px;
+  background-color: #3c3c3c;
+  border-radius: 15px;
+  margin: 10px;
+  grid-area: auto;
+  transition: 200ms;
+}
+.shop {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-radius: 2em;
+  padding: 1em;
+  margin: 1em;
+  align-self: end;
+}
+
+img {
+  padding-top: 1em;
+  width: 250px;
+  height: 230px;
+  border-radius: 15px;
+}
+.shop .item:hover {
+  transition: 50ms;
+  width: 310px;
+  height: 310px;
+}
+
+/* product */
+input {
+  color: black;
+}
+.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-radius: 2em;
+  padding: 1em;
+  margin: 1em;
+  align-self: end;
+}
+div.review {
+  margin: 1em;
+  padding: 1em;
+  border-radius: 10px;
+  background: rgb(101, 187, 245);
+}
+div.reply {
+  margin: 1em;
+  padding: 1em;
+  border-radius: 10px;
+  background: rgb(164, 211, 243);
+}
+.form {
+  width: 400px;
+  height: 3em;
+  border-radius: 1em;
+  text-align: center;
+  border-radius: 2em;
+  background-color: #65bbf5;
+  color: black;
+}
+
+/* 
+basket */
+div.cart {
+  margin: 1em;
+  padding: 1em;
+  border-radius: 10px;
+  background: #65bbf5;
+}
+section.cart1 {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+button {
+  background-color: #3c3c3c;
+  padding: 0.5em;
+  margin: 1em;
+}
+button.active {
+  background-color: rgb(164, 211, 243);
+}
+
+/* orders */
+.orderStatus {
+  background-color: #3c3c3c;
+  padding: 0.2em;
+  margin: 0.2em;
+}
+
+/* footer */
+
+/* reviews */
+.leaveReview {
+  background-color: #3c3c3c;
+  text-align: left;
+  padding: 2em;
+  width: 40vw;
+  margin-inline: 30vw;
+  border-radius: 1em;
+}
+
+.leaveReview #submit {
+  width: 80%;
+}
+.leaveReview * {
+  margin-inline: 10%;
+}
+
+form input {
+  width: 400px;
+  height: 3em;
+  border-radius: 1em;
+}
+select {
+  color: black;
+  width: 400px;
+  height: 3em;
+  border-radius: 1em;
+}
+
+button :hover {
+  cursor: pointer;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web Development 2</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename= 'styles.css')}}"
+    />
+    {% if g.user == "admin"%}
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename= 'adminstyles.css')}}"
+    />
+    {%endif%} {% if g.mode == "light"%}
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename= 'lightMode.css')}}"
+    />
+    {%endif%}
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div><a href="{{url_for('index')}}">Slanders</a></div>
+        <div>
+          <form action="{{url_for('search')}}" method="post" novalidate>
+            {{ sform.hidden_tag() }}
+            <div class="search">{{ sform.search() }}</div>
+          </form>
+        </div>
+        <div>
+          <ul>
+            <li>
+              {% if g.mode == "light"%}
+              <a href="{{url_for('mode', type='dark')}}">Light</a>
+              {%else%}<a href="{{url_for('mode', type='light')}}">Dark</a
+              >{%endif%}
+            </li>
+            <li>
+              <a href="#">currency</a>
+              <ul class="dropdown">
+                <li><a href="{{url_for('currency', type='euro')}}">€</a></li>
+                <li><a href="{{url_for('currency', type='dollar')}}">$</a></li>
+                <li><a href="{{url_for('currency', type='pound')}}">£</a></li>
+              </ul>
+            </li>
+            {% if not g.user %}
+            <li><a href="{{url_for('login')}}">Sign in</a></li>
+            {% else %}
+            <li><a href="{{url_for('account')}}">{{user}}</a></li>
+            {% endif %}
+            <li><a href="{{url_for('cart')}}">Basket</a></li>
+            <li><a href="{{url_for('wishList')}}">WishList</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <nav>
+      <ul id="">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+        <li>
+          <a href="{{url_for('category',categoryType='Kayaks')}}">Kayaks</a>
+        </li>
+        <li>
+          <a href="{{url_for('category',categoryType='Clothing')}}"
+            >Clothing ▾</a
+          >
+          <ul class="dropdown">
+            <li>
+              <a href="{{url_for('category',categoryType='Dry Suits')}}"
+                >Dry Suits</a
+              >
+            </li>
+            <li>
+              <a href="{{url_for('category',categoryType='Wet Suits')}}"
+                >Wet Suits</a
+              >
+            </li>
+            <li>
+              <a href="{{url_for('category',categoryType='Buoyancy Aid')}}"
+                >Buoyancy Aid</a
+              >
+            </li>
+            <li>
+              <a href="{{url_for('category',categoryType='Shoes')}}">Shoes</a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="{{url_for('category',categoryType='Equipment')}}"
+            >Equipment ▾</a
+          >
+          <ul class="dropdown">
+            <li><a href="">Helmet</a></li>
+            <li><a href="">Spray Deck</a></li>
+            <li><a href="">Towels</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{url_for('category',categoryType='Paddles')}}">Paddles</a>
+        </li>
+      </ul>
+    </nav>
+
+    {% block main_content %} {% endblock %}
+    <footer>
+      &copy Stephen Landers All Rights Reserved Image uploader:
+      <a href="https://youtu.be/GeiUTkSAJPs?si=pQAAkldN2f3yuEeT">Reference</a>
+    </footer>
+  </body>
+</html>
