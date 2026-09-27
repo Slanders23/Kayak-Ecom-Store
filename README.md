@@ -3,7 +3,7 @@
 <h2>Guide 🧭 </h2>
 <section>
  <ul>
-   <li>Admin Login - Username: admin Password: 1234 </li>
+   <li>Admin Login <li> Username: admin</li> <li>Password: 1234</li> </li>
    <li></li>
    <li></li>
    <li></li>
