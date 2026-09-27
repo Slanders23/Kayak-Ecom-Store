@@ -283,3 +283,9 @@ select {
 button :hover {
   cursor: pointer;
 }
+input,
+select,
+textarea {
+  background-color: #c1e3fc;
+  color: black;
+}

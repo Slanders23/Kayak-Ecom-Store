@@ -5,18 +5,12 @@
 <section>
  <ul>
    <li>Admin Login <ul> <li> Username: admin</li> <li>Password: 1234</li> </ul></li>
-   <li></li>
-   <li></li>
-   <li></li>
-   <li></li>
  </ul>
 </section>
 <h2>Features 🛠️</h2>
 <h3> Browsing and shopping </h3>
 <ul>
- 
 <li>Home page listing every product </li>
-<li>Filter by category and by brand</li>
 <li>Search by product name or brand</li>
 <li>Product pages</li>
 <li>Stock display on product pages, including a message when stock runs low (10 or fewer)</li>
